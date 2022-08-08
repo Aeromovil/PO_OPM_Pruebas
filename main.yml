@@ -13,7 +13,7 @@
   become: yes
   vars_files:
     - variables/main.yml
-  ignore_errors: yes
+  #ignore_errors: yes
   gather_facts: no
   tasks:
     - name: Estatus WS_Transfer
