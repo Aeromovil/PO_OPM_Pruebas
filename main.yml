@@ -18,6 +18,7 @@
     - name: Estatus WS_Transfer
       shell: "{{ Componente.WS_Transfer.Estatus }}"
       register: comando
+      failed_when: "'No se esta ejecutando el proceso' in command_result.stderr"
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
