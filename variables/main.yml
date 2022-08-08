@@ -1,0 +1,52 @@
+---
+###################################################################
+#Proyecto     : Sistema de Gestión Ansible
+#Descripción  : Variables encendido de componentes OPM 
+#Compañia     : CITI Value In Real Time 
+#Cliente      : OPM
+#Autor        : Víctor Manuel Pérez Ramírez
+#Correo       : victor.perez@citi.com.mx
+###################################################################
+
+Componente:
+  WS_Transfer:
+    Encendido: service wsTransfer start
+  WS_ClaroPay:
+    Encendido: service wsClaroPay start
+  activeMQNoti:
+    Encendido: service activeMQNoti start
+    Puerto: 7151
+    Host: 0.0.0.0
+  TomcatOpenAPI:
+    Encendido: service TomcatOpenAPI start
+  CoreInt_Transfer:
+    Encendido: service CoreInt_Transfer start
+    Puerto: 7151
+    Host: 11.245.24.65
+  CoreInt_ClaroPay:
+    Encendido: service CoreInt_ClaroPay start
+    Puerto: 7151
+    Host: 11.245.24.91
+  Core_Notificaciones:
+    Encendido: service Core_Notificaciones start
+    Puerto: 31215
+    Host: 11.245.88.11
+  Core_Messaging:
+    Encendido: service Core_Messaging start
+    Puerto: 31215
+    Host: 11.245.88.11
+  Mobicents:
+    Encendido: service Mobicents start
+    Puerto: 17600
+    Host: 10.212.19.139
+  Api_Notificaciones:
+    Encendido: service Api_Notificaciones start
+    Puerto: 7541
+    Host: 0.0.0.0
+  Web_Admin:
+    Encendido: service Web_Admin start
+  Portal_Transfer:
+    Encendido: service Portal_Transfer start
+  Portal_Aclaraciones:
+    Encendido: service Portal_Aclaraciones start
+...

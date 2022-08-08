@@ -1,0 +1,303 @@
+---
+###################################################################
+#Proyecto     : Sistema de Gestión Ansible
+#Descripción  : Playbook encendido de componentes OPM 
+#Compañia     : CITI Value In Real Time 
+#Cliente      : OPM
+#Autor        : Víctor Manuel Pérez Ramírez
+#Correo       : victor.perez@citi.com.mx
+###################################################################
+
+- name: Encendido activeMQNoti
+  hosts: activeMQNoti
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido activeMQNoti
+      shell: "{{ Componente.activeMQNoti.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.activeMQNoti.Puerto }}" AMQ 
+      wait_for:
+        host: "{{ Componente.activeMQNoti.Host }}"
+        port: "{{ Componente.activeMQNoti.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Notificaciones
+    - Encendido_Transfer
+    - Encendido_activeMQNoti
+
+- name: Encendido TomcatOpenAPI
+  hosts: TomcatOpenAPI
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido TomcatOpenAPI
+      shell: "{{ Componente.TomcatOpenAPI.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Transfer
+    - Encendido_TomcatOpenAPI
+
+- name: Encendido CoreInt_Transfer
+  hosts: CoreInt_Transfer
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido CoreInt_Transfer
+      shell: "{{ Componente.CoreInt_Transfer.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.CoreInt_Transfer.Puerto }}" AMQ 
+      wait_for:
+        host: "{{ Componente.CoreInt_Transfer.Host }}"
+        port: "{{ Componente.CoreInt_Transfer.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Transfer
+    - Encendido_CoreInt_Transfer
+
+- name: Encendido Api_Notificaciones
+  hosts: Api_Notificaciones
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Api_Notificaciones
+      shell: "{{ Componente.Api_Notificaciones.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.Api_Notificaciones.Puerto }}"
+      wait_for:
+        host: "{{ Componente.Api_Notificaciones.Host }}"
+        port: "{{ Componente.Api_Notificaciones.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Notificaciones
+    - Encendido_Api_Notificaciones
+
+- name: Encendido Core_Notificaciones
+  hosts: Core_Notificaciones
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Core_Notificaciones
+      shell: "{{ Componente.Core_Notificaciones.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.Core_Notificaciones.Puerto }}" 
+      wait_for:
+        host: "{{ Componente.Core_Notificaciones.Host }}"
+        port: "{{ Componente.Core_Notificaciones.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Notificaciones
+    - Encendido_Core_Notificaciones
+
+- name: Encendido Core_Messaging
+  hosts: Core_Messaging
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Core_Messaging
+      environment:
+        #PATH: /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/tgarcia/.local/bin:/home/tgarcia/bin
+      shell: "{{ Componente.Core_Messaging.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.Core_Messaging.Puerto }}" 
+      wait_for:
+        host: "{{ Componente.Core_Messaging.Host }}"
+        port: "{{ Componente.Core_Messaging.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Notificaciones
+    - Encendido_Messaging
+    - Encendido_Core_Messaging
+
+- name: Encendido Mobicents
+  hosts: Mobicents
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Mobicents
+      shell: "{{ Componente.Mobicents.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.Mobicents.Puerto }}" 
+      wait_for:
+        host: "{{ Componente.Mobicents.Host }}"
+        port: "{{ Componente.Mobicents.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Notificaciones
+    - Encendido_Messaging
+    - Encendido_Mobicents
+
+- name: Encendido WS_Transfer
+  hosts: WS_Transfer
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido WS_Transfer
+      shell: "{{ Componente.WS_Transfer.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Transfer
+    - Encendido_WS_Transfer
+    - Encendido_WS_ALL
+
+- name: Encendido activeMQNoti_ClaroPay
+  hosts: activeMQNoti_ClaroPay
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido activeMQNoti_ClaroPay
+      shell: "{{ Componente.activeMQNoti.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.activeMQNoti.Puerto }}" AMQ 
+      wait_for:
+        host: "{{ Componente.activeMQNoti.Host }}"
+        port: "{{ Componente.activeMQNoti.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_ClaroPay
+    - Encendido_activeMQNoti_ClaroPay
+
+- name: Encendido CoreInt_ClaroPay
+  hosts: CoreInt_ClaroPay
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido CoreInt_ClaroPay
+      shell: "{{ Componente.CoreInt_ClaroPay.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+    - name: Validando puerto "{{ Componente.CoreInt_ClaroPay.Puerto }}" AMQ 
+      wait_for:
+        host: "{{ Componente.CoreInt_ClaroPay.Host }}"
+        port: "{{ Componente.CoreInt_ClaroPay.Puerto }}"
+        delay: 10
+        state: started
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_ClaroPay
+    - Encendido_CoreInt_ClaroPay
+
+- name: Encendido WS_ClaroPay
+  hosts: WS_ClaroPay
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido WS_ClaroPay
+      shell: "{{ Componente.WS_ClaroPay.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_ClaroPay
+    - Encendido_WS_ClaroPay
+    - Encendido_WS_ALL
+
+- name: Encendido Web_Admin
+  hosts: Web_Admin
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Web_Admin
+      shell: "{{ Componente.Web_Admin.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Portales
+    - Encendido_Web_Admin
+
+- name: Encendido Portal_Transfer
+  hosts: Portal_Transfer
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Portal_Transfer
+      shell: "{{ Componente.Portal_Transfer.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Portales
+    - Encendido_Portal_Transfer
+
+- name: Encendido Portal_Aclaraciones
+  hosts: Portal_Aclaraciones
+  become: yes
+  vars_files:
+    - variables/main.yml
+  gather_facts: no
+  tasks:
+    - name: Encendido Portal_Aclaraciones
+      shell: "{{ Componente.Portal_Aclaraciones.Encendido }}"
+      register: comando
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Portales
+    - Encendido_Portal_Aclaraciones
+...
