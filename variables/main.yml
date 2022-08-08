@@ -1,7 +1,7 @@
 ---
 ###################################################################
 #Proyecto     : Sistema de Gestión Ansible
-#Descripción  : Variables encendido de componentes OPM 
+#Descripción  : Variables Estatus de componentes OPM 
 #Compañia     : CITI Value In Real Time 
 #Cliente      : OPM
 #Autor        : Víctor Manuel Pérez Ramírez
@@ -10,5 +10,5 @@
 
 Componente:
   WS_Transfer:
-    Encendido: service wsTransfer status
+    Estatus: service wsTransfer status
 ...

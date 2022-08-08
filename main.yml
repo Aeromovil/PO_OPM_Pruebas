@@ -8,21 +8,21 @@
 #Correo       : victor.perez@citi.com.mx
 ###################################################################
 
-- name: Encendido WS_Transfer
+- name: Estatus WS_Transfer
   hosts: all
   become: yes
   vars_files:
     - variables/main.yml
   gather_facts: no
   tasks:
-    - name: Encendido WS_Transfer
-      shell: "{{ Componente.WS_Transfer.Encendido }}"
+    - name: Estatus WS_Transfer
+      shell: "{{ Componente.WS_Transfer.Estatus }}"
       register: comando
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
-    - Encendido_General
-    - Encendido_Transfer
-    - Encendido_WS_Transfer
-    - Encendido_WS_ALL
+    - Estatus_General
+    - Estatus_Transfer
+    - Estatus_WS_Transfer
+    - Estatus_WS_ALL
 ...
