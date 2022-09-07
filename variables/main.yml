@@ -10,5 +10,8 @@
 
 Componente:
   WS_Transfer:
-    Estatus: service wsTransfer status
+    Estatus: /home/adpmc/scripts/wsTransfer.sh status
+    Encendido: /home/adpmc/scripts/wsTransfer.sh start
+    Apagado: /home/adpmc/scripts/wsTransfer.sh stop
+    Restart: /home/adpmc/scripts/wsTransfer.sh restart
 ...

@@ -27,4 +27,64 @@
     - Estatus_Transfer
     - Estatus_WS_Transfer
     - Estatus_WS_ALL
+
+- name: Encendido WS_Transfer
+  hosts: all
+  become: yes
+  vars_files:
+    - variables/main.yml
+  #ignore_errors: yes
+  gather_facts: no
+  tasks:
+    - name: Encendido WS_Transfer
+      shell: "{{ Componente.WS_Transfer.Encendido }}"
+      register: comando
+      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Encendido_General
+    - Encendido_Transfer
+    - Encendido_WS_Transfer
+    - Encendido_WS_ALL
+
+- name: Apagado WS_Transfer
+  hosts: all
+  become: yes
+  vars_files:
+    - variables/main.yml
+  #ignore_errors: yes
+  gather_facts: no
+  tasks:
+    - name: Apagado WS_Transfer
+      shell: "{{ Componente.WS_Transfer.Apagado }}"
+      register: comando
+      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Apagado_General
+    - Apagado_Transfer
+    - Apagado_WS_Transfer
+    - Apagado_WS_ALL
+
+- name: Restart WS_Transfer
+  hosts: all
+  become: yes
+  vars_files:
+    - variables/main.yml
+  #ignore_errors: yes
+  gather_facts: no
+  tasks:
+    - name: Restart WS_Transfer
+      shell: "{{ Componente.WS_Transfer.Restart }}"
+      register: comando
+      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+    - debug: msg="{{ comando.stdout_lines }}"
+  tags:
+    - never
+    - Restart_General
+    - Restart_Transfer
+    - Restart_WS_Transfer
+    - Restart_WS_ALL
 ...
