@@ -19,7 +19,7 @@
     - name: Estatus WS_Transfer
       shell: "{{ Componente.WS_Transfer.Estatus }}"
       register: comando
-      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+      failed_when: "{{ Componente.WS_Transfer.Estatus }} in comando.stdout"
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
@@ -39,7 +39,7 @@
     - name: Encendido WS_Transfer
       shell: "{{ Componente.WS_Transfer.Encendido }}"
       register: comando
-      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+      failed_when: "{{ Componente.WS_Transfer.Estatus }} in comando.stdout"
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
@@ -59,7 +59,7 @@
     - name: Apagado WS_Transfer
       shell: "{{ Componente.WS_Transfer.Apagado }}"
       register: comando
-      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+      failed_when: "{{ Componente.WS_Transfer.Estatus }} in comando.stdout"
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
@@ -79,7 +79,7 @@
     - name: Restart WS_Transfer
       shell: "{{ Componente.WS_Transfer.Restart }}"
       register: comando
-      failed_when: "'No se esta ejecutando el proceso' in comando.stdout"
+      failed_when: "{{ Componente.WS_Transfer.Estatus }} in comando.stdout"
     - debug: msg="{{ comando.stdout_lines }}"
   tags:
     - never
