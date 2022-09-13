@@ -8,7 +8,7 @@
 #Correo       : victor.perez@citi.com.mx
 ###################################################################
 
-Fallo: 'No se esta ejecutando el proceso'
+Fallo: No se esta ejecutando el proceso
 Componente:
   WS_Transfer:
     Estatus: /home/adpmc/scripts/wsTransfer.sh status
